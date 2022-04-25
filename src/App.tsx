@@ -1,9 +1,7 @@
 import PasteSubmission from "./components/PasteSubmission";
 
 function App(): JSX.Element {
-  return(
-    <PasteSubmission />
-  );
+  return <PasteSubmission />;
 }
 
 export default App;

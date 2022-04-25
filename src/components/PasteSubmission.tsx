@@ -1,44 +1,44 @@
-import { IPaste } from "../utils/interfaces"
-import { useState } from "react"
-import axios from "axios"
+import { IPaste } from "../utils/interfaces";
+import { useState } from "react";
+import axios from "axios";
 
 export default function PasteSubmission(): JSX.Element {
-    const [titleText, setTitleText] = useState<string>("")
-    const [contentText, setContentText] = useState<string>("")
+  const [titleText, setTitleText] = useState<string>("");
+  const [contentText, setContentText] = useState<string>("");
 
-    const submitPaste= (): void => {  
-        const newPaste: IPaste = titleText===""? {content: contentText}: {title: titleText, content: contentText};
-        axios.post('https://paste-bin-backend-temi-jacob.herokuapp.com/', newPaste)
-          .then(() => console.log("success"))
-          .catch(error => {
-            console.log(error);
-          });
-    }
-    return(
+  const submitPaste = (): void => {
+    const newPaste: IPaste =
+      titleText === ""
+        ? { content: contentText }
+        : { title: titleText, content: contentText };
+    axios
+      .post("https://paste-bin-backend-temi-jacob.herokuapp.com/", newPaste)
+      .then(() => console.log("success"))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  return (
     <>
-        <input 
-      onChange={(e) =>setTitleText(e.target.value)}
-      value={titleText}
-      placeholder="Enter Title"
+      <input
+        onChange={(e) => setTitleText(e.target.value)}
+        value={titleText}
+        placeholder="Enter Title"
       />
       <input
-      onChange={(e) => setContentText(e.target.value)}
-      value={contentText}
-      placeholder="Enter contenet"
+        onChange={(e) => setContentText(e.target.value)}
+        value={contentText}
+        placeholder="Enter contenet"
       />
-      <button
-      onClick={submitPaste}
-      >
-      Submit
-      </button> 
+      <button onClick={submitPaste}>Submit</button>
     </>
-    )
+  );
 }
 
 // function PASTE_SUBMISSION(): JSX.Element{
 //     set [titleText, setTitleText] = useState<string>("")
 //     set [contentText, setContentText] = useState<string>("")
-  
+
 //     function UPDATE_TITLE_TEXT_STATE(NEW_TITLE: string): void {
 //       SET_TITLE_TEXT(NEW_TITLE);
 //     }
@@ -54,7 +54,7 @@ export default function PasteSubmission(): JSX.Element {
 //       }
 //     }
 //     return(
-//       <input 
+//       <input
 //       onChange={(e) => UPDATE_TITLE_TEXT_STATE(e.value)}
 //       value={TITLE_TEXT}
 //       placeholder="Enter Title"
@@ -68,6 +68,6 @@ export default function PasteSubmission(): JSX.Element {
 //       onClick={SUBMIT_PASTE}
 //       >
 //       Submit
-//       </button> 
+//       </button>
 //     )
 //   }
