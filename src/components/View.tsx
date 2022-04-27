@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IPasteFullDetails } from "../utils/interfaces";
+import PastePost from "./PastePost";
+import FullPastePost from "./FullPastePost";
+import { Fade } from "react-awesome-reveal";
 
 export default function View(): JSX.Element {
   const [tenPosts, setTenPosts] = useState<IPasteFullDetails[]>([]);
+  const [selectedPost, setSelectedPost] = useState<IPasteFullDetails>();
 
   useEffect(() => {
     axios
@@ -12,22 +16,43 @@ export default function View(): JSX.Element {
       .catch((error) => console.error(error));
   }, []);
 
-  const mapTenPosts = (): JSX.Element => {
-    return (
-      <>
-        {tenPosts.map((post) => (
-          <div key={post.paste_id}>
-            <h1>{post.paste_title}</h1>
-          </div>
-        ))}
-      </>
-    );
-  };
+  const mapTenPosts: JSX.Element[] = tenPosts.map((post) => (
+    <button
+      key={post.paste_id}
+      className="paste-post-tile"
+      onClick={() => setSelectedPost(post)}
+    >
+      <PastePost
+        paste_title={post.paste_title}
+        paste_content={post.paste_content}
+        paste_date={post.paste_date}
+        paste_id={post.paste_id}
+      />
+    </button>
+  ));
 
   return (
-    <>
-      <h1>View</h1>
-      {tenPosts.length > 0 && mapTenPosts()}
-    </>
+    <section id="view" className="view">
+      <div className="paste-posts-col">
+        <h1>Recent Posts</h1>
+        {tenPosts.length > 0 && (
+          <Fade cascade={true} direction="left">
+            {mapTenPosts}
+          </Fade>
+        )}
+      </div>
+
+      <div className="full-paste-post">
+        {selectedPost === undefined && <h1>Click on a post to view</h1>}
+        {selectedPost !== undefined && (
+          <FullPastePost
+            paste_title={selectedPost.paste_title}
+            paste_content={selectedPost.paste_content}
+            paste_date={selectedPost.paste_date}
+            paste_id={selectedPost.paste_id}
+          />
+        )}
+      </div>
+    </section>
   );
 }
