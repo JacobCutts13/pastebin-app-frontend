@@ -16,7 +16,7 @@ export default function FullPastePost(Props: IPasteFullDetails): JSX.Element {
       )
       .then((response) => setCommentsArray(response.data))
       .catch((error) => console.error(error));
-  }, [newComment]);
+  }, [newComment, Props.paste_id]);
 
   const date = new Date(Props.paste_date);
   const formattedDate = `${date.toDateString()}, ${date.toLocaleTimeString()}`;
