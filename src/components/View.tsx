@@ -11,7 +11,7 @@ export default function View(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get("https://paste-bin-backend-temi-jacob.herokuapp.com/")
+      .get("https://paste-bin-backend-temi-jacob.herokuapp.com/pastes")
       .then((response) => setTenPosts(response.data))
       .catch((error) => console.error(error));
   }, []);
