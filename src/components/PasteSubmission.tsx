@@ -12,7 +12,10 @@ export default function PasteSubmission(): JSX.Element {
         ? { paste_content: contentText }
         : { paste_title: titleText, paste_content: contentText };
     axios
-      .post("https://paste-bin-backend-temi-jacob.herokuapp.com/pastes", newPaste)
+      .post(
+        "https://paste-bin-backend-temi-jacob.herokuapp.com/pastes",
+        newPaste
+      )
       .then(() => console.log("success"))
       .catch((error) => {
         console.log(error);
