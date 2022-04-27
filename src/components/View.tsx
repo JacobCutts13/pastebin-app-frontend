@@ -3,6 +3,7 @@ import axios from "axios";
 import { IPasteFullDetails } from "../utils/interfaces";
 import PastePost from "./PastePost";
 import FullPastePost from "./FullPastePost";
+import { Fade } from "react-awesome-reveal";
 
 export default function View(): JSX.Element {
   const [tenPosts, setTenPosts] = useState<IPasteFullDetails[]>([]);
@@ -34,7 +35,10 @@ export default function View(): JSX.Element {
     <section id="view" className="view">
       <div className="paste-posts-col">
         <h1>Recent Posts</h1>
-        {tenPosts.length > 0 && mapTenPosts}
+        {tenPosts.length > 0 && 
+        <Fade cascade={true} direction="left">
+        {mapTenPosts}
+        </Fade>}
       </div>
 
       <div className="full-paste-post">
