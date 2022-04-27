@@ -86,7 +86,6 @@ input {
   margin-left: 33%;
   overflow: auto;
   scrollbar-width: thin;
-  
 }
 
 .paste-post-tile {
@@ -96,15 +95,13 @@ input {
   width: 90%;
   height: 20vh;
   overflow: hidden;
-
 }
 .paste-tile-content {
-  overflow:hidden;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
 }
-
 
 .button-submit {
   margin: 20px auto 0px 0px;
@@ -123,5 +120,5 @@ input {
   width: 100%;
   margin: 20px 0px;
   border-radius: 10px;
-  font-family:sans-serif;
+  font-family: sans-serif;
 }
