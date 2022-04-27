@@ -77,6 +77,8 @@ input {
   scrollbar-width: thin;
 }
 .full-paste-post {
+  display: flex;
+  flex-direction: column;
   flex-grow: 2;
   flex-basis: 66%;
   padding: 10px;
@@ -86,6 +88,20 @@ input {
   margin-left: 33%;
   overflow: auto;
   scrollbar-width: thin;
+}
+.paste-post-full-content {
+  background-color: #dfdfdf;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  padding: 10px;
+}
+
+.comment-section {
+  margin: 0px auto;
+  border-radius: 10px;
+  width: 90%;
+  padding: 10px;
 }
 
 .paste-post-tile {

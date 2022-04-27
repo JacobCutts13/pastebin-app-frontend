@@ -17,6 +17,8 @@ export default function PasteSubmission(): JSX.Element {
         newPaste
       )
       .then(() => console.log("success"))
+      .then(() => setTitleText(""))
+      .then(() => setContentText(""))
       .catch((error) => {
         console.log(error);
       });
