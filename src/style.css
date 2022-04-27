@@ -21,6 +21,9 @@ input {
 .flex-column {
   flex-direction: column;
 }
+.flex-row {
+  flex-direction: row;
+}
 
 .header {
   background-color: #c4c4c4;
@@ -40,10 +43,6 @@ input {
   flex-direction: row;
 }
 
-.input-content {
-  height: 150px;
-}
-
 .header a {
   margin-left: 30px;
   font-size: 20px;
@@ -51,6 +50,44 @@ input {
 }
 .header a:hover {
   color: white;
+}
+
+.view {
+  padding: none;
+  width: 100%;
+  align-items: top;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.paste-posts-col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #eaeaea;
+  text-align: center;
+  flex-basis: 33%;
+}
+.full-paste-post {
+  flex-grow: 2;
+  flex-basis: 66%;
+  padding: 10px;
+}
+
+.paste-post-tile {
+  background-color: #dfdfdf;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  height: 20vh;
+  overflow: hidden;
+}
+.paste-tile-content {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
 }
 
 .button-submit {
@@ -63,4 +100,7 @@ input {
 .paste-submissions {
   margin: 30px auto;
   width: 60%;
+}
+.input-content {
+  height: 150px;
 }
