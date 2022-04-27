@@ -2,6 +2,8 @@ body {
   width: 100vw;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x: hidden;
+  position: fixed;
 }
 input {
   width: 100%;
@@ -68,11 +70,23 @@ input {
   background-color: #eaeaea;
   text-align: center;
   flex-basis: 33%;
+  width: 33%;
+  position: fixed;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: thin;
 }
 .full-paste-post {
   flex-grow: 2;
   flex-basis: 66%;
   padding: 10px;
+  height: 100%;
+  position: fixed;
+  width: 66%;
+  margin-left: 33%;
+  overflow: auto;
+  scrollbar-width: thin;
+  
 }
 
 .paste-post-tile {
@@ -82,13 +96,15 @@ input {
   width: 90%;
   height: 20vh;
   overflow: hidden;
+
 }
 .paste-tile-content {
+  overflow:hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-  overflow: hidden;
 }
+
 
 .button-submit {
   margin: 20px auto 0px 0px;
@@ -103,4 +119,9 @@ input {
 }
 .input-content {
   height: 150px;
+  resize: none;
+  width: 100%;
+  margin: 20px 0px;
+  border-radius: 10px;
+  font-family:sans-serif;
 }

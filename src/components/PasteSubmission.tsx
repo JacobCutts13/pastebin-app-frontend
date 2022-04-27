@@ -28,7 +28,7 @@ export default function PasteSubmission(): JSX.Element {
         value={titleText}
         placeholder="Enter Title"
       />
-      <input
+      <textarea
         onChange={(e) => setContentText(e.target.value)}
         value={contentText}
         placeholder="Enter content"
