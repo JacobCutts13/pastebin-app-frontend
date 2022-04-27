@@ -35,10 +35,11 @@ export default function View(): JSX.Element {
     <section id="view" className="view">
       <div className="paste-posts-col">
         <h1>Recent Posts</h1>
-        {tenPosts.length > 0 && 
-        <Fade cascade={true} direction="left">
-        {mapTenPosts}
-        </Fade>}
+        {tenPosts.length > 0 && (
+          <Fade cascade={true} direction="left">
+            {mapTenPosts}
+          </Fade>
+        )}
       </div>
 
       <div className="full-paste-post">
