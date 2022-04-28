@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { IPasteFullDetails, ICommentFullDetails } from "../utils/interfaces";
 import axios from "axios";
 import { Fade } from "react-awesome-reveal";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function FullPastePost(Props: IPasteFullDetails): JSX.Element {
   const [newComment, setNewComment] = useState<string>("");
@@ -38,9 +40,34 @@ export default function FullPastePost(Props: IPasteFullDetails): JSX.Element {
     }
   };
 
+  const deleteComment = (comment_id: number): void => {
+    axios
+      .delete(
+        "https://paste-bin-backend-temi-jacob.herokuapp.com/pastes/" +
+          Props.paste_id +
+          "/comments/" +
+          comment_id
+      )
+      .then(() => console.log("success deleted"))
+      .then(() =>
+        setCommentsArray(
+          commentsArray.filter((e) => e.comment_id !== comment_id)
+        )
+      ) //remove deleted comment
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const mapCommentsArray: JSX.Element[] = commentsArray.map((comment) => (
-    <div key={comment.comment_id}>
+    <div key={comment.comment_id} className="comment">
       <h2>{comment.comment_content}</h2>
+      <IconButton
+        aria-label="delete"
+        onClick={() => deleteComment(comment.comment_id)}
+      >
+        <DeleteIcon />
+      </IconButton>
     </div>
   ));
 
