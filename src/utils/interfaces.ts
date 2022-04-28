@@ -9,9 +9,11 @@ export interface IPasteFullDetails extends IPaste {
   paste_id: number;
 }
 export interface IFullPastePost extends IPasteFullDetails {
-    setSelectedPost: React.Dispatch<React.SetStateAction<IPasteFullDetails | undefined>>;
-    setTenPosts: React.Dispatch<React.SetStateAction<IPasteFullDetails[]>>;
-    tenPosts: IPasteFullDetails[];
+  setSelectedPost: React.Dispatch<
+    React.SetStateAction<IPasteFullDetails | undefined>
+  >;
+  setTenPosts: React.Dispatch<React.SetStateAction<IPasteFullDetails[]>>;
+  tenPosts: IPasteFullDetails[];
 }
 
 export interface IComment {
