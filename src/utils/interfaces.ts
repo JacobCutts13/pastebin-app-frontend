@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IPaste {
   paste_title?: string;
   paste_content: string;
@@ -5,6 +7,11 @@ export interface IPaste {
 export interface IPasteFullDetails extends IPaste {
   paste_date: string;
   paste_id: number;
+}
+export interface IFullPastePost extends IPasteFullDetails {
+    setSelectedPost: React.Dispatch<React.SetStateAction<IPasteFullDetails | undefined>>;
+    setTenPosts: React.Dispatch<React.SetStateAction<IPasteFullDetails[]>>;
+    tenPosts: IPasteFullDetails[];
 }
 
 export interface IComment {
