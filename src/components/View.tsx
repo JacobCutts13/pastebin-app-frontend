@@ -36,7 +36,7 @@ export default function View(): JSX.Element {
       <div className="paste-posts-col">
         <h1>Recent Posts</h1>
         {tenPosts.length > 0 && (
-          <Fade cascade={true} direction="left">
+          <Fade cascade={true} direction="left" triggerOnce={true}>
             {mapTenPosts}
           </Fade>
         )}
