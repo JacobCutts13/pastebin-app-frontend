@@ -44,12 +44,18 @@ export default function View(): JSX.Element {
 
       <div className="full-paste-post">
         {selectedPost === undefined && <h1>Click on a post to view</h1>}
-        {selectedPost !== undefined && (
+        {selectedPost !== undefined && selectedPost.paste_id === -1 && (
+          <h1>Post Deleted</h1>
+        )}
+        {selectedPost !== undefined && selectedPost.paste_id !== -1 && (
           <FullPastePost
             paste_title={selectedPost.paste_title}
             paste_content={selectedPost.paste_content}
             paste_date={selectedPost.paste_date}
             paste_id={selectedPost.paste_id}
+            setSelectedPost={setSelectedPost}
+            setTenPosts={setTenPosts}
+            tenPosts={tenPosts}
           />
         )}
       </div>

@@ -96,6 +96,12 @@ input {
   width: 90%;
   padding: 10px;
 }
+.full-post-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .comment-section {
   margin: 0px auto;
