@@ -4,10 +4,13 @@ import axios from "axios";
 import { Fade } from "react-awesome-reveal";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function FullPastePost(Props: IFullPastePost): JSX.Element {
   const [newComment, setNewComment] = useState<string>("");
   const [commentsArray, setCommentsArray] = useState<ICommentFullDetails[]>([]);
+  const [editCommentID, setEditCommentID] = useState<number>(-1);
+  const [editCommentContent, setEditCommentContent] = useState<string>("");
 
   useEffect(() => {
     axios
@@ -83,9 +86,62 @@ export default function FullPastePost(Props: IFullPastePost): JSX.Element {
       });
   };
 
+  const editComment = (comment_id: number, comment_content: string): void => {
+    if (editCommentID === comment_id) {
+      setEditCommentID(-1);
+    } else {
+      setEditCommentID(comment_id);
+      setEditCommentContent(comment_content);
+    }
+  };
+
+  const submitEditCommentContent = (keycode: string): void => {
+    console.log(keycode);
+    if (keycode === "Enter") {
+      axios
+        .patch(
+          "https://paste-bin-backend-temi-jacob.herokuapp.com/pastes/" +
+            Props.paste_id +
+            "/comments/" +
+            editCommentID.toString(),
+          { comment_content: editCommentContent }
+        )
+        .then(() => console.log("success"))
+        .then(() => setNewComment(""))
+        .then(() => {
+          const editCommentIndex = commentsArray.findIndex(
+            (e) => e.comment_id === editCommentID
+          );
+          commentsArray[editCommentIndex].comment_content = editCommentContent;
+          setCommentsArray(commentsArray);
+        })
+        .then(() => setEditCommentID(-1))
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   const mapCommentsArray: JSX.Element[] = commentsArray.map((comment) => (
     <div key={comment.comment_id} className="comment">
-      <h2>{comment.comment_content}</h2>
+      {editCommentID === comment.comment_id && (
+        <textarea
+          onChange={(e) => setEditCommentContent(e.target.value)}
+          value={editCommentContent}
+          placeholder="Edit"
+          className="input-content"
+          onKeyDown={(e) => submitEditCommentContent(e.key)}
+        />
+      )}
+      {editCommentID !== comment.comment_id && (
+        <h2>{comment.comment_content}</h2>
+      )}
+      <IconButton
+        aria-label="edit"
+        onClick={() => editComment(comment.comment_id, comment.comment_content)}
+      >
+        <EditIcon />
+      </IconButton>
       <IconButton
         aria-label="delete"
         onClick={() => deleteComment(comment.comment_id)}
